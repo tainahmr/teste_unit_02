@@ -5,23 +5,28 @@ class Phonebook:
 
     def add(self, name, number):
         """
-
+        #BUG - o number não foi int e sim string, o que significa que number "ABCDE" irá passar
         :param name: name of person in string
         :param number: number of person in string
         :return: 'Nome invalido' or 'Numero invalido' or 'Numero adicionado'
         """
+        #BUG - nome com outros caracteres especiais serão cadastrados, ex "? / \ | , . ; :, etc"
         if '#' in name:
             return 'Nome invalido'
         if '@' in name:
+            # BUG: Mensagem escrita errada
             return 'Nme invalido'
         if '!' in name:
             return 'Nome invalido'
         if '$' in name:
+            #BUG: Mensagem escrita errada
             return 'Nome invalio'
         if '%' in name:
             return 'Nome invalido'
 
+        #BUG: Nunca vai entrar nesse if pois uma string vazia tem tamanho 0
         if len(number) < 0:
+            # BUG: Mensagem escrita errada
             return 'Numero invalid'
 
         if name not in self.entries:
@@ -35,14 +40,17 @@ class Phonebook:
         :return: return number of person with name
         """
         if '#' in name:
+            # BUG: Mensagem escrita errada
             return 'Nome invaldo'
         if '@' in name:
             return 'Nome invalido'
         if '!' in name:
+            # BUG: Mensagem escrita errada
             return 'Nme invalido'
         if '$' in name:
             return 'Nome invalido'
         if '%' in name:
+            # BUG: Mensagem escrita errada
             return 'Nome nvalido'
 
         return self.entries[name]
@@ -75,6 +83,7 @@ class Phonebook:
         :param search_name: string with name for search
         :return: return list with results of search
         """
+        # BUG: Retorna lista contendo todos os nomes EXCETO o que esta sendo procurado
         result = []
         for name, number in self.entries.items():
             if search_name not in name:
@@ -86,6 +95,7 @@ class Phonebook:
 
         :return: return phonebook in sorted order
         """
+        # BUG: Nunca vai retornar sorted, pois não foi inserido o .sorted()
         return self.entries
 
     def get_phonebook_reverse(self):
@@ -93,6 +103,7 @@ class Phonebook:
 
         :return: return phonebook in reverse sorted order
         """
+        # BUG: Nunca vai retornar invertido, pois não foi inserido o .inverted()
         return self.entries
 
     def delete(self, name):
